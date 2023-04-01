@@ -130,5 +130,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="argon2_elixir" level="project" />
+    <orderEntry type="library" name="comeonin" level="project" />
+    <orderEntry type="library" name="elixir_make" level="project" />
   </component>
 </module>
