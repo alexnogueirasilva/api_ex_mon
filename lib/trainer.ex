@@ -13,11 +13,18 @@ defmodule ExMon.Trainer do
     timestamps()
   end
 
-  @required_parms [:name, :password]
+  @required_params [:name, :password]
+
+  def build(params) do
+    params
+    |> changeset()
+    |> apply_action(:insert)
+  end
+
   def changeset(params) do
     %__MODULE__{}
-    |> cast(params, @required_parms)
-    |> validate_required(@required_parms)
+    |> cast(params, @required_params)
+    |> validate_required(@required_params)
     |> validate_length(:password, min: 8)
     |> put_pass_hash()
   end

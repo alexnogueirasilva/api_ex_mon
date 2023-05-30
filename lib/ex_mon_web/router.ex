@@ -7,6 +7,7 @@ defmodule ExMonWeb.Router do
 
   scope "/api", ExMonWeb do
     pipe_through :api
+    resources "/trainers", TrainersController
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
