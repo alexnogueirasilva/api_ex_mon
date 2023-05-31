@@ -1,4 +1,6 @@
 defmodule ExMonWeb.ErrorJSON do
+
+  import Ecto.Changeset, only: [traverse_errors: 2]
   # If you want to customize a particular status code,
   # you may add your own clauses, such as:
   #
