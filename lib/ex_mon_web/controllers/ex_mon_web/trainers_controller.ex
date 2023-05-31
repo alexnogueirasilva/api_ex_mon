@@ -8,7 +8,7 @@ defmodule ExMonWeb.TrainersController do
   def create(conn, params) do
     params
     |> ExMon.create_trainer()
-    |> handel_response(conn)
+    |> handel_response(conn, :create, :created)
   end
 
   def delete(conn, %{"id" => id}) do
@@ -17,10 +17,16 @@ defmodule ExMonWeb.TrainersController do
     |> handel_delete(conn)
   end
 
-  defp handel_response({:ok, trainer}, conn) do
+  def show(conn, %{"id" => id}) do
+    id
+    |> ExMon.fetch_trainer()
+    |> handel_response(conn, :show, :ok)
+  end
+
+  defp handel_response({:ok, trainer}, conn, view, status) do
     conn
-    |> put_status(:created)
-    |> render(:create, trainer: trainer)
+    |> put_status(status)
+    |> render(view, trainer: trainer)
   end
 
   defp handel_delete({:ok, _trainer}, conn) do
@@ -29,6 +35,7 @@ defmodule ExMonWeb.TrainersController do
     |> text("")
   end
 
-  defp handel_response({:error, _changeset} = error, _conn), do: error
+
+  defp handel_response({:error, _changeset} = error, _conn, _view, _status), do: error
   defp handel_delete({:error, _reason} = error, _conn), do: error
 end
