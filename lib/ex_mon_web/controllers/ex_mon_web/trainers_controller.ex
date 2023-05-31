@@ -9,9 +9,9 @@ defmodule ExMonWeb.TrainersController do
     |> handel_response(conn)
   end
 
-  defp handel_response({:ok, trainers}, conn) do
+  defp handel_response({:ok, trainer}, conn) do
     conn
-    |> put_status(:ok)
-    |> render(:create, trainers: trainers)
+    |> put_status(:created)
+    |> render(:create, trainer: trainer)
   end
 end
