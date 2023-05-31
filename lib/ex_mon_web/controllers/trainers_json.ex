@@ -1,9 +1,9 @@
 defmodule ExMonWeb.TrainersJSON do
   @moduledoc false
 
-  alias ExMonWeb.Trainer
+  alias ExMon.Trainer
 
-  def render(create, %{trainer: trainer}) do
+  def render(create, %{trainer: %Trainer{id: id, name: name, inserted_at: inserted_at}}) do
     %{
       message: "Create trainers",
       trainer: %{
