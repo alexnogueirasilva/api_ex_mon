@@ -23,6 +23,12 @@ defmodule ExMonWeb.TrainersController do
     |> handel_response(conn, :show, :ok)
   end
 
+  def update(conn, params) do
+    params
+    |> ExMon.update_trainer()
+    |> handel_response(conn, :update, :ok)
+  end
+
   defp handel_response({:ok, trainer}, conn, view, status) do
     conn
     |> put_status(status)

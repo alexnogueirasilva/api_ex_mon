@@ -22,4 +22,15 @@ defmodule ExMonWeb.TrainersJSON do
     }
   end
 
+  def render("update.json", %{trainer: %Trainer{id: id, name: name, updated_at: updated_at}}) do
+    %{
+      message: "update trainers",
+      trainer: %{
+        id: id,
+        name: name,
+        updated_at: updated_at,
+      }
+    }
+  end
+
 end
