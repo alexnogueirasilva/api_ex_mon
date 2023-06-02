@@ -7,7 +7,7 @@ defmodule ExMonWeb.ChangesetJSON do
   end
 
   def render("bad.json", %{result: message}) do
-    %{message: message}
+    %{data: message}
   end
 
   defp translate_erros(changeset) do

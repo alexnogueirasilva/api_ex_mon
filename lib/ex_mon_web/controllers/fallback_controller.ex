@@ -5,7 +5,7 @@ defmodule ExMonWeb.FallbackController do
 
   def call(conn, {:error, result}) do
     conn
-    |> put_status(:bad_request)
+    |> put_status(result.status)
     |> put_view(ExMonWeb.ChangesetJSON)
     |> render(:bad, %{result: result})
   end

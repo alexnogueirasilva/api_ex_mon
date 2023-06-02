@@ -1,17 +1,18 @@
 defmodule ExMon.Pokemon do
   @moduledoc false
 
-  @key [:id, :name, :wight, :types]
+  @key [:id, :name, :weight, :types]
 
   @enforce_keys @key
 
+  @derive Jason.Encoder
   defstruct @key
 
-  def build(%{"id" => id, "name" => name, "wight" => wight, "types" => types}) do
+  def build(%{"id" => id, "name" => name, "weight" => weight, "types" => types}) do
     %__MODULE__{
       id: id,
       name: name,
-      wight: wight,
+      weight: weight,
       types: parse_types(types)
     }
   end
