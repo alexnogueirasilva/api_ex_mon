@@ -1,7 +1,7 @@
 defmodule ExMon.Trainer.Pokemon.Create do
   @moduledoc false
 
-  alias ExMon.Pokemon
+  alias ExMon.{Pokemon, Trainer}
   alias ExMon.Trainer.Pokemon, as: TrainerPokemon
   alias ExMon.PokeAPI.Client
   alias ExMon.Repo
@@ -22,17 +22,23 @@ defmodule ExMon.Trainer.Pokemon.Create do
   defp create_pokemon(%Pokemon{name: name, weight: weight, types: types}, %{
     "nickname" => nickname, "trainer_id" => trainer_id
   }) do
-    params = %{
-      name: name,
-      weight: weight,
-      types: types,
-      nickname: nickname,
-      trainer_id: trainer_id
-    }
+      case Repo.get(Trainer, trainer_id) do
+        nil ->
+          {:error, "Trainer does not exist"}
 
-    params
-    |> TrainerPokemon.build()
-    |> handle_build()
+        _ ->
+      params = %{
+        name: name,
+        weight: weight,
+        types: types,
+        nickname: nickname,
+        trainer_id: trainer_id
+      }
+
+      params
+      |> TrainerPokemon.build()
+      |> handle_build()
+    end
   end
 
   defp handle_build({:ok, pokemon}), do: Repo.insert(pokemon)
