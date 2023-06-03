@@ -1,4 +1,4 @@
-defmodule ExMonWeb.Controllers.TrainerPokemons do
+defmodule ExMonWeb.TrainerPokemonsJSON do
   @moduledoc false
 
   alias ExMon.Trainer.Pokemon
