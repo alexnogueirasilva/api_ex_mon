@@ -12,7 +12,7 @@ defmodule ExMon.Trainer.Delete do
 
   defp delete(uuid) do
     case fetch_trainer(uuid) do
-    nil -> {:error, "Trainer not found"}
+    nil -> {:error, %{status: 404, message: "Trainer not found"}}
     trainer -> Repo.delete(trainer)
     end
   end

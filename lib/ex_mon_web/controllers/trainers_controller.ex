@@ -34,14 +34,12 @@ defmodule ExMonWeb.TrainersController do
     |> put_status(status)
     |> render(view, trainer: trainer)
   end
+  defp handel_response({:error, _changeset} = error, _conn, _view, _status), do: error
 
   defp handel_delete({:ok, _trainer}, conn) do
     conn
     |> put_status(:no_content)
     |> text("")
   end
-
-
-  defp handel_response({:error, _changeset} = error, _conn, _view, _status), do: error
   defp handel_delete({:error, _reason} = error, _conn), do: error
 end
