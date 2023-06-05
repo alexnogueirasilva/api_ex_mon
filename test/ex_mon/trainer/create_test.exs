@@ -24,7 +24,20 @@ defmodule ExMon.Trainer.CreateTest do
         password: "12345678",
       }} = trainer
 
-      assert count_before > count_after
+      assert count_after > count_before
+    end
+
+    test "when all params are invalid, creates a trainer with erros" do
+      params = %{
+        name: "Ash Ketchum"
+      }
+
+      trainer = Create.call(params)
+
+      assert {:error, changeset} = trainer
+
+      assert errors_on(changeset) == %{password: ["can't be blank"]}
+
     end
   end
 end
